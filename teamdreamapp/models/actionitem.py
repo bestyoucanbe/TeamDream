@@ -19,10 +19,10 @@ class ActionItem(models.Model):
         ItemType, related_name="itemtypes",
         on_delete=models.CASCADE)
     description = models.CharField(max_length=50)
-    start_date = models.DateField()
-    finish_date = models.DateField()
-    personal_benefit = models.CharField(max_length=50)
-    team_benefit = models.CharField(max_length=50)
+    start_date = models.DateField(blank=True, null=True)
+    finish_date = models.DateField(blank=True, null=True)
+    personal_benefit = models.CharField(max_length=50, blank=True, null=True)
+    team_benefit = models.CharField(max_length=50, blank=True, null=True)
     presprint_review = models.BooleanField()
 
     class Meta:
