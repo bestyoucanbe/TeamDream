@@ -33,4 +33,7 @@ migrations
 README.md
 
 #db location
-# hrapp/views/connection.py
+teamdreamapp/views/connection.py
+
+#temp
+views/
