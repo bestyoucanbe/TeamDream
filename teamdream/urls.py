@@ -20,5 +20,5 @@ from teamdreamapp.models import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # url(r'^', include('teamdreamapp.urls')),
+    url(r'^', include('teamdreamapp.urls')),
 ]
