@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 from teamdreamapp.models import *
+from teamdreamapp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'accounts/', include('django.contrib.auth.urls')),
     url(r'^', include('teamdreamapp.urls')),
+    url(r'^logout/$', logout_user, name='logout'),
 ]

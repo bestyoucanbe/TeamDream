@@ -119,3 +119,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Where the user goes after they are logged in--
+LOGIN_REDIRECT_URL = '/actionitems'

@@ -1,0 +1,21 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Team Dream</title>
+  </head>
+  <body>
+    <h1>Action Items</h1>
+
+    <ol>
+    {% for action in all_actions %}
+        <li>
+            {{ action.description }}
+            Start Date: {{action.start_date}}
+            End Date: {{action.finish_date}}
+        </li>
+    {% endfor %}
+    </ol>
+  </body>
+</html>
