@@ -5,3 +5,4 @@ from .auth.registration import register_user
 from .auth.registerform import register_form
 from .actionitems.addform import action_item_addform
 from .sprints.addform import sprint_addform
+from .sprints.addsprint import add_sprint

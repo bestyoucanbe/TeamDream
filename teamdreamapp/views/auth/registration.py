@@ -28,4 +28,4 @@ def register_user(request):
             user=new_user)
 
     # send them the url for where it should go after executing the above code
-    return redirect(reverse('teamdreamapp:actionitems'))
+    return redirect(reverse('teamdreamapp:home'))
