@@ -23,6 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'accounts/', include('django.contrib.auth.urls')),
     url(r'^', include('teamdreamapp.urls')),
-    url(r'^register/$', register_user, name='logout'),
     url(r'^logout/$', logout_user, name='logout'),
 ]

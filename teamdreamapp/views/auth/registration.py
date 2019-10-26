@@ -21,7 +21,7 @@ def register_user(request):
         )
 
         employee = Employee.objects.create(
-            department=form_data['department'],
+            department_name=form_data['department_name'],
             user=new_user)
 
         # Commit the user to the database by saving it
