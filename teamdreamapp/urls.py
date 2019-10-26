@@ -16,4 +16,6 @@ urlpatterns = [
     url(r'^sprints/addform$', sprint_addform, name='sprintaddform'),
     # The following url takes you to the add_sprint method in views/sprints/addsprint.py file.
     url(r'^addsprint$', add_sprint, name='addsprint'),
+    # The following url takes you to the sprint_list method in views/sprints/list.py file.
+    url(r'^sprints/list$', sprint_list, name='sprintlist'),
 ]

@@ -6,3 +6,4 @@ from .auth.registerform import register_form
 from .actionitems.addform import action_item_addform
 from .sprints.addform import sprint_addform
 from .sprints.addsprint import add_sprint
+from .sprints.list import sprint_list
