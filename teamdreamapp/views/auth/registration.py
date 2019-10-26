@@ -24,7 +24,4 @@ def register_user(request):
             department_name=form_data['department_name'],
             user=new_user)
 
-        # Commit the user to the database by saving it
-        employee.save()
-
     return redirect(reverse('teamdreamapp:actionitems'))
