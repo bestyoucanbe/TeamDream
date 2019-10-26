@@ -1,0 +1,43 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Team Dream</title>
+  </head>
+  <body>
+    <h3>Add An Action Item</h3>
+
+{% comment %} The form action step below takes you to the url for this form--what happens when this form is submitted {% endcomment %}
+{% comment %} The method is sent with it--Post {% endcomment %}
+
+    <form action="{% url 'teamdreamapp:addactionitem' %}" method="post">
+      {% csrf_token %}
+      <fieldset>
+          <label for="username">Username: </label>
+          <input id="username" type="text" name="username">
+      </fieldset>
+      <fieldset>
+          <label for="email">Email: </label>
+          <input id="email" type="text" name="email">
+      </fieldset>
+      <fieldset>
+          <label for="password">Password: </label>
+          <input id="password" type="text" name="password">
+      </fieldset>
+      <fieldset>
+          <label for="first_name">First Name: </label>
+          <input id="first_name" type="text" name="first_name">
+      </fieldset>
+      <fieldset>
+          <label for="last_name">Last Name: </label>
+          <input id="last_name" type="text" name="last_name">
+      </fieldset>
+      <fieldset>
+          <label for="department_name">Department: </label>
+          <input id="department_name" type="text" name="department_name">
+      </fieldset>
+      <input type="submit" value="Register" />
+    </form>
+  </body>
+</html>

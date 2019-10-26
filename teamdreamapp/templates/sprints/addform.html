@@ -1,0 +1,31 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Team Dream</title>
+  </head>
+  <body>
+    <h3>Add A Sprint</h3>
+
+{% comment %} The form action step below takes you to the url for this form--what happens when this form is submitted {% endcomment %}
+{% comment %} The method is sent with it--Post {% endcomment %}
+
+    <form action="{% url 'teamdreamapp:addsprint' %}" method="post">
+      {% csrf_token %}
+      <fieldset>
+          <label for="sprintname">Name of Sprint: </label>
+          <input id="sprintname" type="text" name="sprintname">
+      </fieldset>
+      <fieldset>
+          <label for="startdate">Start Date: </label>
+          <input id="startdate" type="date" name="startdate">
+      </fieldset>
+      <fieldset>
+          <label for="enddate">End Date: </label>
+          <input id="enddate" type="date" name="enddate">
+      </fieldset>
+      <input type="submit" value="Add Sprint" />
+    </form>
+  </body>
+</html>
