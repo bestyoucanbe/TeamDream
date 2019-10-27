@@ -10,3 +10,5 @@ from .sprints.list import sprint_list
 from .itemtypes.additemform import itemtype_addform
 from .itemtypes.additemtype import add_itemtype
 from .itemtypes.list import itemtype_list
+from .actionitems.addform import action_item_addform
+from .actionitems.addaction import action_item_addaction
