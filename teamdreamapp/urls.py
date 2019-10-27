@@ -18,4 +18,10 @@ urlpatterns = [
     url(r'^addsprint$', add_sprint, name='addsprint'),
     # The following url takes you to the sprint_list method in views/sprints/list.py file.
     url(r'^sprints/list$', sprint_list, name='sprintlist'),
+    # The following url takes you to the itemtype_addform method in views/itemtypes/additemform.py file.
+    url(r'^itemtypes/addform$', itemtype_addform, name='itemtypeaddform'),
+    # The following url takes you to the add_itemtype method in views/itemtypes/additemtype.py file.
+    url(r'^additemtype$', add_itemtype, name='additemtype'),
+    # The following url takes you to the itemtype_list method in views/itemtypes/list.py file.
+    url(r'^itemtypes/list$', itemtype_list, name='itemtypelist'),
 ]

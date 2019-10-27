@@ -16,7 +16,7 @@ def sprint_list(request):
                 s.start_date,
                 s.end_date
             from teamdreamapp_sprint s
-            order by s.start_date;
+            order by s.start_date
             """)
 
             all_sprints = []

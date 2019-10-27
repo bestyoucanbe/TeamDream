@@ -7,7 +7,7 @@ from ..connection import Connection
 
 
 @login_required
-def add_sprint(request):
+def add_itemtype(request):
 
     if request.method == 'POST':
         form_data = request.POST
@@ -16,13 +16,12 @@ def add_sprint(request):
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
-        INSERT INTO teamdreamapp_sprint
+        INSERT INTO teamdreamapp_itemtype
         (
-            sprint_name, start_date, end_date
+            action_desc
         )
-        VALUES (?, ?, ?)
+        VALUES (?)
         """,
-                          (form_data['sprintname'], form_data['startdate'],
-                           form_data['enddate']))
+                          (form_data['actiondesc'],))
 
-        return redirect(reverse('teamdreamapp:sprintlist'))
+        return redirect(reverse('teamdreamapp:itemtypelist'))
