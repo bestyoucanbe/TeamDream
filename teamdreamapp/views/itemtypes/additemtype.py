@@ -24,4 +24,4 @@ def add_itemtype(request):
         """,
                           (form_data['actiondesc'],))
 
-        return redirect(reverse('teamdreamapp:home'))
+        return redirect(reverse('teamdreamapp:itemtypelist'))

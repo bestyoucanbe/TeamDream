@@ -25,4 +25,4 @@ def add_sprint(request):
                           (form_data['sprintname'], form_data['startdate'],
                            form_data['enddate']))
 
-        return redirect(reverse('teamdreamapp:home'))
+        return redirect(reverse('teamdreamapp:sprintlist'))
