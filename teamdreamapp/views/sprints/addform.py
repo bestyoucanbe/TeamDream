@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # This view takes you to the sprint addition form.
-# The sprint/addform.html is the template containing the form.
+# The sprints/addform.html is the template containing the form.
 
 
 def sprint_addform(request):

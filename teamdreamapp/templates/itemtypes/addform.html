@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Team Dream</title>
+  </head>
+  <body>
+    <h3>Add An Action Description</h3>
+
+{% comment %} The form action step below takes you to the url for this form--what happens when this form is submitted {% endcomment %}
+{% comment %} The method is sent with it--Post {% endcomment %}
+
+    <form action="{% url 'teamdreamapp:additemtype' %}" method="post">
+      {% csrf_token %}
+      <fieldset>
+          <label for="actiondesc">Action Description: </label>
+          <input id="actiondesc" type="text" name="actiondesc">
+      </fieldset>
+      <input type="submit" value="Add Action Description" />
+    </form>
+  </body>
+</html>
