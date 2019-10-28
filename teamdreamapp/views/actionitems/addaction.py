@@ -12,17 +12,40 @@ def action_item_addaction(request):
     if request.method == 'POST':
         form_data = request.POST
 
+    # Set the value of presprint review.
+    if form_data.get('presprintreview'):
+        presprintvalue = True
+    else:
+        presprintvalue = False
+
+    # Set the value of start date
+    if form_data.get('start_date'):
+        startdatevalue = form_data.get('start_date')
+    else:
+        startdatevalue = null
+
+    # Set the value of finish date
+    if form_data.get('presprintreview'):
+        presprintvalue = True
+    else:
+        presprintvalue = False
+
     with sqlite3.connect(Connection.db_path) as conn:
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
-        INSERT INTO teamdreamapp_sprint
+        INSERT INTO teamdreamapp_actionitem
         (
-            sprint_name, start_date, end_date
+            description, start_date, finish_date,
+            personal_benefit, team_benefit, presprint_review, employee_id,itemtype_id, sprint_id
         )
-        VALUES (?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
-                          (form_data['sprintname'], form_data['startdate'],
-                           form_data['enddate']))
+                          (form_data['description'], form_data['start_date'],
+                           form_data['finish_date'],
+                           form_data['personal_benefit'],
+                           form_data['team_benefit'], presprintvalue,
+                           request.user.employee.id, form_data['actiondescription'],
+                           form_data['sprintdescription']))
 
         return redirect(reverse('teamdreamapp:actionitems'))

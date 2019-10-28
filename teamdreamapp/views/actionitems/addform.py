@@ -16,6 +16,7 @@ def action_item_addform(request):
 
         db_cursor.execute("""
         select
+                i.id,
                 i.action_desc
             from teamdreamapp_itemtype i
         """)
@@ -25,6 +26,7 @@ def action_item_addform(request):
 
         for row in dataset:
             itemtype = ItemType()
+            itemtype.id = row['id']
             itemtype.action_desc = row['action_desc']
 
             all_itemtypes.append(itemtype)
@@ -33,6 +35,7 @@ def action_item_addform(request):
 
         db_cursor.execute("""
         select
+                s.id,
                 s.sprint_name,
                 s.start_date,
                 s.end_date
@@ -45,6 +48,7 @@ def action_item_addform(request):
 
         for row in dataset:
             sprint = Sprint()
+            sprint.id = row['id']
             sprint.sprint_name = row['sprint_name']
             sprint.start_date = row['start_date']
             sprint.end_date = row['end_date']
