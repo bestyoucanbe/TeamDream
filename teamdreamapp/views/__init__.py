@@ -12,3 +12,4 @@ from .itemtypes.additemtype import add_itemtype
 from .itemtypes.list import itemtype_list
 from .actionitems.addform import action_item_addform
 from .actionitems.addaction import action_item_addaction
+from .actionitems.actionitemdet import action_item_details
