@@ -18,7 +18,13 @@
         <div>Personal Benefit: {{ actionitem.personal_benefit }}</div>
         <div>Team Benefit: {{ actionitem.team_benefit }}</div>
         <div>Pre-Sprint Review: {{ actionitem.presprint_review }}</div>
+        <br>
         <input type="hidden" id="employeeId" name="employeeId" value={{ actionitem.employee_id }}>
+        <form action="{% url 'teamdreamapp:actionitem' actionitem.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="actual_method" value="DELETE">
+            <button>Delete</button>
+        </form>
     </div>
   </body>
 </html>
