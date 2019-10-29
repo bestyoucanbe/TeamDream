@@ -42,3 +42,22 @@ def action_item_details(request, actionitem_id):
         }
 
         return render(request, template, context)
+
+    if request.method == 'POST':
+        form_data = request.POST
+
+        # Check if this POST is for deleting an action item
+
+        if (
+            "actual_method" in form_data
+            and form_data["actual_method"] == "DELETE"
+        ):
+            with sqlite3.connect(Connection.db_path) as conn:
+                db_cursor = conn.cursor()
+
+                db_cursor.execute("""
+                DELETE FROM teamdreamapp_actionitem
+                WHERE id = ?
+                """, (actionitem_id,))
+
+            return redirect(reverse('teamdreamapp:actionitems'))
