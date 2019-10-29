@@ -9,11 +9,11 @@
     <h1>Action Items</h1>
 
     <ol>
-    {% for action in all_actions %}
+    {% for actionitem in all_actions %}
         <li>
-            {{ action.description }}
-            Start Date: {{action.start_date}}
-            End Date: {{action.finish_date}}
+            <a href="{% url 'teamdreamapp:actionitem' actionitem.id %}">{{ actionitem.description }}</a>
+            Start Date: {{actionitem.start_date}}
+            End Date: {{actionitem.finish_date}}
         </li>
     {% endfor %}
     </ol>

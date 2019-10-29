@@ -27,6 +27,7 @@ def get_actionitem(actionitem_id):
             where a.id = ?
         """, (actionitem_id,))
 
+        # Only 1 record being fetched--therefore using fetchone() method.
         return db_cursor.fetchone()
 
 
