@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Team Dream</title>
+  </head>
+  <body>
+    <div>
+        <h3>Action Item Detail</h3>
+        <br>
+        <h3>Type of Action: {{ actionitem.itemtype_id }}</h3>
+        <h3>Description: {{ actionitem.description }}</h3>
+        <h3>From Which Sprint: {{ actionitem.sprint_id }}</h3>
+        <br>
+        <h4>Start Date: {{ actionitem.start_date }}</h4>
+        <h4>Finish Date: {{ actionitem.finish_date }}</h4>
+        <div>Personal Benefit: {{ actionitem.personal_benefit }}</div>
+        <div>Team Benefit: {{ actionitem.team_benefit }}</div>
+        <div>Pre-Sprint Review: {{ actionitem.presprint_review }}</div>
+        <input type="hidden" id="employeeId" name="employeeId" value={{ actionitem.employee_id }}>
+    </div>
+  </body>
+</html>

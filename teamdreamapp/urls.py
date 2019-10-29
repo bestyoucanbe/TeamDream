@@ -29,6 +29,6 @@ urlpatterns = [
     url(r'^actionitems/addaction$', action_item_addaction,
         name='actionitemaddaction'),
     # The following url takes you to the action_item_details method in views/actionitems/actionitemdet.py file
-    path('actionitems/<int:actionitem_id>/',
+    path('actionitem/<int:actionitem_id>',
          action_item_details, name='actionitem'),
 ]

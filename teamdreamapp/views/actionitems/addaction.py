@@ -18,18 +18,6 @@ def action_item_addaction(request):
     else:
         presprintvalue = False
 
-    # Set the value of start date
-    if form_data.get('start_date'):
-        startdatevalue = form_data.get('start_date')
-    else:
-        startdatevalue = null
-
-    # Set the value of finish date
-    if form_data.get('presprintreview'):
-        presprintvalue = True
-    else:
-        presprintvalue = False
-
     with sqlite3.connect(Connection.db_path) as conn:
         db_cursor = conn.cursor()
 
