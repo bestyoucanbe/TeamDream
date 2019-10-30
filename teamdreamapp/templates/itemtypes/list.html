@@ -1,11 +1,6 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Team Dream</title>
-  </head>
-  <body>
+{% extends 'shared/base.html' %}
+
+{% block content %}
     <h3>List of Action Descriptions</h3>
 
     <ol>
@@ -15,5 +10,4 @@
         </li>
     {% endfor %}
     </ol>
-  </body>
-</html>
+{% endblock %}
