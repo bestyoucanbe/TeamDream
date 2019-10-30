@@ -10,11 +10,16 @@ def itemtype_list(request):
             conn.row_factory = sqlite3.Row
             db_cursor = conn.cursor()
 
+            user = request.user
+
             db_cursor.execute("""
             select
                 i.action_desc
-            from teamdreamapp_itemtype i
-            """)
+                from teamdreamapp_itemtype i
+                join teamdreamapp_actionitem a ON a.itemtype_id = i.id
+                join teamdreamapp_employee e ON e.id = a.employee_id
+                where e.user_id = ?
+            """, (user.id,))
 
             all_itemtypes = []
             dataset = db_cursor.fetchall()

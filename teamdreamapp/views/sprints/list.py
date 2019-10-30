@@ -10,14 +10,19 @@ def sprint_list(request):
             conn.row_factory = sqlite3.Row
             db_cursor = conn.cursor()
 
+            user = request.user
+
             db_cursor.execute("""
             select
                 s.sprint_name,
                 s.start_date,
                 s.end_date
             from teamdreamapp_sprint s
+            join teamdreamapp_actionitem a ON a.sprint_id = s.id
+           	join teamdreamapp_employee e ON e.id = a.employee_id
+           	where e.user_id = ?
             order by s.start_date
-            """)
+            """, (user.id,))
 
             all_sprints = []
             dataset = db_cursor.fetchall()

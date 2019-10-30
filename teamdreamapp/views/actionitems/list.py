@@ -10,19 +10,23 @@ def action_item_list(request):
             conn.row_factory = sqlite3.Row
             db_cursor = conn.cursor()
 
+            user = request.user
+
             db_cursor.execute("""
             select 	a.id,
-		            a.description,
-		            a.start_date,
-		            a.finish_date,
-		            a.personal_benefit,
-		            a.team_benefit,
-		            a.presprint_review,
-		            a.employee_id,
-		            a.itemtype_id,
-		            a.sprint_id
-            from teamdreamapp_actionitem a
-            """)
+                    a.description,
+                    a.start_date,
+                    a.finish_date,
+                    a.personal_benefit,
+                    a.team_benefit,
+                    a.presprint_review,
+                    a.employee_id,
+                    a.itemtype_id,
+                    a.sprint_id
+                from teamdreamapp_actionitem a
+                join teamdreamapp_employee e ON e.id = a.employee_id
+                where e.user_id = ?
+            """, (user.id,))
 
             all_actions = []
             dataset = db_cursor.fetchall()

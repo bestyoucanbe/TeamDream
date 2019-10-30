@@ -9,24 +9,23 @@
     <div>
         <h3>Action Item Detail</h3>
         <br>
-        <h3>Type of Action: {{ actionitem.itemtype_id }}</h3>
-        <h3>Description: {{ actionitem.description }}</h3>
-        <h3>From Which Sprint: {{ actionitem.sprint_id }}</h3>
+        <h3>Type of Action: {{ actionitemplus.action_desc }}</h3>
+        <h3>Description: {{ actionitemplus.description }}</h3>
+        <h3>From Which Sprint: {{ actionitemplus.sprint_name }}</h3>
         <br>
-        <h4>Start Date: {{ actionitem.start_date }}</h4>
-        <h4>Finish Date: {{ actionitem.finish_date }}</h4>
-        <div>Personal Benefit: {{ actionitem.personal_benefit }}</div>
-        <div>Team Benefit: {{ actionitem.team_benefit }}</div>
-        <div>Pre-Sprint Review: {{ actionitem.presprint_review }}</div>
+        <h4>Start Date: {{ actionitemplus.start_date }}</h4>
+        <h4>Finish Date: {{ actionitemplus.finish_date }}</h4>
+        <div>Personal Benefit: {{ actionitemplus.personal_benefit }}</div>
+        <div>Team Benefit: {{ actionitemplus.team_benefit }}</div>
+        <div>Pre-Sprint Review: {{ presprint_value }}</div>
         <br>
-        <input type="hidden" id="employeeId" name="employeeId" value={{ actionitem.employee_id }}>
-        <form action="{% url 'teamdreamapp:actionitem' actionitem.id %}" method="POST">
+        <form action="{% url 'teamdreamapp:actionitem' actionitemplus.a2 %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="actual_method" value="DELETE">
             <button>Delete</button>
         </form>
         <br>
-        <form action="{% url 'teamdreamapp:actionitem_edit_form' actionitem.id %}" method="GET">
+        <form action="{% url 'teamdreamapp:actionitem_edit_form' actionitemplus.a2 %}" method="GET">
             {% csrf_token %}
             <button>Edit</button>
         </form>
