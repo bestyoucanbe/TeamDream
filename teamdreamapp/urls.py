@@ -31,4 +31,6 @@ urlpatterns = [
     # The following url takes you to the action_item_details method in views/actionitems/actionitemdet.py file
     path('actionitem/<int:actionitem_id>',
          action_item_details, name='actionitem'),
+    url(r'^actionitems/(?P<actionitem_id>[0-9]+)/form$',
+        actionitem_edit_form, name='actionitem_edit_form'),
 ]

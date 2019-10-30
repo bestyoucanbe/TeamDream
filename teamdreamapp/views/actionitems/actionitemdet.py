@@ -43,7 +43,7 @@ def action_item_details(request, actionitem_id):
 
         return render(request, template, context)
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         form_data = request.POST
 
         # Check if this POST is for deleting an action item
@@ -61,3 +61,39 @@ def action_item_details(request, actionitem_id):
                 """, (actionitem_id,))
 
             return redirect(reverse('teamdreamapp:actionitems'))
+
+        elif (
+            "actual_method" in form_data
+            and form_data["actual_method"] == "PUT"
+        ):
+
+            # Set the value of presprint review.
+            if form_data.get('presprintreview'):
+                presprintvalue = True
+            else:
+                presprintvalue = False
+
+            with sqlite3.connect(Connection.db_path) as conn:
+                db_cursor = conn.cursor()
+
+                db_cursor.execute("""
+                UPDATE teamdreamapp_actionitem
+                SET description = ?,
+                    start_date = ?,
+                    finish_date = ?,
+                    personal_benefit = ?,
+                    team_benefit = ?,
+                    presprint_review = ?,
+                    employee_id = ?,
+                    itemtype_id = ?,
+                    sprint_id = ?
+                WHERE id = ?
+                """,
+                                  (form_data['description'], form_data['start_date'],
+                                   form_data['finish_date'],
+                                   form_data['personal_benefit'],
+                                   form_data['team_benefit'], presprintvalue,
+                                   request.user.employee.id, form_data['actiondescription'],
+                                   form_data['sprintdescription'], actionitem_id))
+
+                return redirect(reverse('teamdreamapp:actionitems'))

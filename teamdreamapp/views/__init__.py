@@ -21,3 +21,4 @@ from .actionitems.addform import action_item_addform
 from .actionitems.addaction import action_item_addaction
 from .actionitems.actionitemdet import action_item_details
 from .actionitems.list import action_item_list
+from .actionitems.editform import actionitem_edit_form

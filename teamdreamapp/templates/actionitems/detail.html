@@ -25,6 +25,11 @@
             <input type="hidden" name="actual_method" value="DELETE">
             <button>Delete</button>
         </form>
+        <br>
+        <form action="{% url 'teamdreamapp:actionitem_edit_form' actionitem.id %}" method="GET">
+            {% csrf_token %}
+            <button>Edit</button>
+        </form>
     </div>
   </body>
 </html>
