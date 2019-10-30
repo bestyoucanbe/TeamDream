@@ -2,18 +2,18 @@ import sqlite3
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from teamdreamapp.models import ActionItem
+from teamdreamapp.models import ActionItem, ItemType, Sprint
 from teamdreamapp.models import model_factory
 from ..connection import Connection
 
 
-def get_actionitem(actionitem_id):
+def get_actionitemplus(actionitem_id):
     with sqlite3.connect(Connection.db_path) as conn:
         conn.row_factory = model_factory(ActionItem)
         db_cursor = conn.cursor()
 
         db_cursor.execute("""
-            select 	a.id,
+            select 	a.id a2,
 		    a.description,
 		    a.start_date,
 		    a.finish_date,
@@ -22,8 +22,14 @@ def get_actionitem(actionitem_id):
 		    a.presprint_review,
 		    a.employee_id,
 		    a.itemtype_id,
-		    a.sprint_id
+		    a.sprint_id,
+		    i.id i2,
+		    i.action_desc,
+		    s.id s2,
+		    s.sprint_name
             from teamdreamapp_actionitem a
+            join teamdreamapp_itemtype i ON a.itemtype_id = i.id
+            join teamdreamapp_sprint s ON a.sprint_id = s.id
             where a.id = ?
         """, (actionitem_id,))
 
@@ -34,11 +40,18 @@ def get_actionitem(actionitem_id):
 @login_required
 def action_item_details(request, actionitem_id):
     if request.method == 'GET':
-        actionitem = get_actionitem(actionitem_id)
+        actionitemplus = get_actionitemplus(actionitem_id)
+
+        # Convert the boolean value for the pre-sprint review into a human readable value.
+        if actionitemplus.presprint_review == 1:
+            presprint_value = "Yes"
+        else:
+            presprint_value = "No"
 
         template = 'actionitems/detail.html'
         context = {
-            'actionitem': actionitem
+            'actionitemplus': actionitemplus,
+            'presprint_value': presprint_value
         }
 
         return render(request, template, context)
@@ -67,7 +80,7 @@ def action_item_details(request, actionitem_id):
             and form_data["actual_method"] == "PUT"
         ):
 
-            # Set the value of presprint review.
+            # Convert the checkbox value into a boolean value.
             if form_data.get('presprintreview'):
                 presprintvalue = True
             else:
