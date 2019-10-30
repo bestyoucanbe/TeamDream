@@ -66,14 +66,14 @@ def actionitem_edit_form(request, actionitem_id):
 
     if request.method == 'GET':
         actionitem = get_actionitem(actionitem_id)
-        itemtypes = get_itemtypes()
-        sprints = get_sprints()
+        all_itemtypes = get_itemtypes()
+        all_sprints = get_sprints()
 
         template = 'actionitems/editform.html'
         context = {
             'actionitem': actionitem,
-            'itemtypes': itemtypes,
-            'sprints': sprints
+            'all_itemtypes': all_itemtypes,
+            'all_sprints': all_sprints
         }
 
         return render(request, template, context)

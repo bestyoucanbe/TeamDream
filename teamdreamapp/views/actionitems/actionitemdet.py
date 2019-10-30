@@ -85,7 +85,7 @@ def action_item_details(request, actionitem_id):
                     team_benefit = ?,
                     presprint_review = ?,
                     employee_id = ?,
-                    itemtype_id = ?
+                    itemtype_id = ?,
                     sprint_id = ?
                 WHERE id = ?
                 """,
