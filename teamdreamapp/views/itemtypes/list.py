@@ -14,10 +14,10 @@ def itemtype_list(request):
 
             db_cursor.execute("""
             select
-                i.action_desc
+                i.action_desc,
+                i.employee_id
                 from teamdreamapp_itemtype i
-                join teamdreamapp_actionitem a ON a.itemtype_id = i.id
-                join teamdreamapp_employee e ON e.id = a.employee_id
+                join teamdreamapp_employee e ON e.id = i.employee_id
                 where e.user_id = ?
             """, (user.id,))
 

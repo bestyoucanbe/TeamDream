@@ -1,6 +1,9 @@
 # Special imports
 from ..models import model_factory
 
+# Home
+from .home.home import go_home
+
 # Authentication
 from .auth.registration import register_user
 from .auth.registerform import register_form

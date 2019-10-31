@@ -16,10 +16,10 @@ def sprint_list(request):
             select
                 s.sprint_name,
                 s.start_date,
-                s.end_date
+                s.end_date,
+                s.employee_id
             from teamdreamapp_sprint s
-            join teamdreamapp_actionitem a ON a.sprint_id = s.id
-           	join teamdreamapp_employee e ON e.id = a.employee_id
+           	join teamdreamapp_employee e ON e.id = s.employee_id
            	where e.user_id = ?
             order by s.start_date
             """, (user.id,))

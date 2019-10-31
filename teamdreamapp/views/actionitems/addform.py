@@ -36,11 +36,6 @@ def action_item_addform(request):
 
             all_itemtypes.append(itemtype)
 
-        if all_itemtypes is None:
-            print(
-                "No Action Descriptions exist.  Select Types of Actions from the above menu.")
-            return redirect(reverse('teamdreamapp:home'))
-
         # The following section is to get the sprints
 
         db_cursor.execute("""
