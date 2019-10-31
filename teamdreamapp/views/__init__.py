@@ -4,6 +4,7 @@ from ..models import model_factory
 # Authentication
 from .auth.registration import register_user
 from .auth.registerform import register_form
+from .auth.loginform import login_form
 from .auth.logout import logout_user
 
 # Sprints
