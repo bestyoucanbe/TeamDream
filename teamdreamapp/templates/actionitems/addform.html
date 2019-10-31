@@ -37,7 +37,7 @@
           <input id="team_benefit" type="text" name="team_benefit">
       </fieldset>
       <fieldset>
-          <label for="sprintdescription">Action Description: </label>
+          <label for="sprintdescription">Sprint Description: </label>
           <select id="sprintdescription" type="text" name="sprintdescription">
                 {% for sprint in all_sprints %}
                     <option value="{{ sprint.id }}">{{ sprint.sprint_name }}</option>
