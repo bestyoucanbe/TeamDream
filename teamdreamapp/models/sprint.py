@@ -1,9 +1,13 @@
 from django.db import models
+from .employee import Employee
 from django.urls import reverse
 
 
 class Sprint(models.Model):
 
+    employee = models.ForeignKey(
+        Employee, related_name="sprintemployee",
+        on_delete=models.CASCADE)
     sprint_name = models.CharField(max_length=50)
     start_date = models.DateField()
     end_date = models.DateField()

@@ -1,15 +1,11 @@
 from django.db import models
 from django.urls import reverse
-from .employee import Employee
 from .sprint import Sprint
 from .itemtype import ItemType
 
 
 class ActionItem(models.Model):
 
-    employee = models.ForeignKey(
-        Employee, related_name="employees",
-        on_delete=models.CASCADE)
     sprint = models.ForeignKey(
         Sprint, related_name="sprints",
         null=True,
@@ -19,8 +15,8 @@ class ActionItem(models.Model):
         ItemType, related_name="itemtypes",
         on_delete=models.CASCADE)
     description = models.CharField(max_length=50)
-    start_date = models.DateField(blank=True, null=True)
-    finish_date = models.DateField(blank=True, null=True)
+    start_date = models.DateField(null=True)
+    finish_date = models.DateField(null=True)
     personal_benefit = models.CharField(max_length=50, blank=True, null=True)
     team_benefit = models.CharField(max_length=50, blank=True, null=True)
     presprint_review = models.BooleanField()
