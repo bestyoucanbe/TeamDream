@@ -1,9 +1,12 @@
 import sqlite3
+import json
+from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
+from django.views.decorators.csrf import csrf_exempt
 from ...models import Employee
 from django.urls import reverse
-from django.shortcuts import redirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from ..connection import Connection
 
 
@@ -27,5 +30,16 @@ def register_user(request):
             department_name=form_data['department_name'],
             user=new_user)
 
-    # send them the url for where it should go after executing the above code
-    return redirect(reverse('teamdreamapp:home'))
+        authenticated_user = authenticate(
+            username=form_data['username'], password=form_data['password'])
+
+        # If authentication was successful, log the user in
+        if authenticated_user is not None:
+            login(request=request, user=authenticated_user)
+            # send them the url for where it should go after executing the above code
+            return redirect(reverse('teamdreamapp:home'))
+
+        else:
+            # Bad login details were provided. So we can't log the user in.
+            print("Invalid login details: {}, {}".format('username', 'password'))
+            return HttpResponse("Invalid login details supplied.")

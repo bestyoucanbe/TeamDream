@@ -11,6 +11,10 @@ urlpatterns = [
     url(r'^register$', register_user, name='register'),
     # The following url takes you to the register_form method in views/auth/registerform.py file.
     url(r'^register/form$', register_form, name='registerform'),
+    # The following url takes you to the login_form method in views/auth/loginform.py file.
+    url(r'^accounts/login$', login_form, name='login'),
+    # The following url takes you to the logout_user method in views/auth/logout.py file.
+    url(r'^logout$', logout_user, name='logout'),
     # The following url takes you to the sprint_addform method in views/sprints/addform.py file.
     url(r'^sprints/addform$', sprint_addform, name='sprintaddform'),
     # The following url takes you to the add_sprint method in views/sprints/addsprint.py file.
