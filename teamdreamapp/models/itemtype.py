@@ -1,9 +1,13 @@
 from django.db import models
+from .employee import Employee
 from django.urls import reverse
 
 
 class ItemType(models.Model):
 
+    employee = models.ForeignKey(
+        Employee, related_name="itemtypeemployee",
+        on_delete=models.CASCADE)
     action_desc = models.CharField(max_length=15)
 
     class Meta:

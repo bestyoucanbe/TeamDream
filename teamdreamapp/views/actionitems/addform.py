@@ -1,5 +1,6 @@
 import sqlite3
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from teamdreamapp.models import ItemType, Sprint
 from ..connection import Connection
 
@@ -14,12 +15,16 @@ def action_item_addform(request):
 
         # The following section is to get the itemtypes (action descriptions)
 
+        user = request.user
+
         db_cursor.execute("""
         select
-                i.id,
-                i.action_desc
+            i.action_desc
             from teamdreamapp_itemtype i
-        """)
+            join teamdreamapp_actionitem a ON a.itemtype_id = i.id
+            join teamdreamapp_employee e ON e.id = a.employee_id
+            where e.user_id = ?
+        """, (user.id,))
 
         all_itemtypes = []
         dataset = db_cursor.fetchall()
@@ -31,17 +36,24 @@ def action_item_addform(request):
 
             all_itemtypes.append(itemtype)
 
+        if all_itemtypes is None:
+            print(
+                "No Action Descriptions exist.  Select Types of Actions from the above menu.")
+            return redirect(reverse('teamdreamapp:home'))
+
         # The following section is to get the sprints
 
         db_cursor.execute("""
-        select
-                s.id,
+            select
                 s.sprint_name,
                 s.start_date,
                 s.end_date
             from teamdreamapp_sprint s
+            join teamdreamapp_actionitem a ON a.sprint_id = s.id
+           	join teamdreamapp_employee e ON e.id = a.employee_id
+           	where e.user_id = ?
             order by s.start_date
-        """)
+            """, (user.id,))
 
         all_sprints = []
         dataset = db_cursor.fetchall()

@@ -3,6 +3,8 @@
 {% block content %}
     <h3>List of Sprints</h3>
 
+    <a href="{% url 'teamdreamapp:sprintaddform' %}">Add A Sprint</a>
+
     <ol>
     {% for sprint in all_sprints %}
         <li>
