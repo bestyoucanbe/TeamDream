@@ -1,7 +1,9 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-    <h3>List of Action Descriptions</h3>
+    <h3>List of Action Type Descriptions</h3>
+
+    <a href="{% url 'teamdreamapp:itemtypeaddform' %}">Add An Action Type Description</a>
 
     <ol>
     {% for itemtype in all_itemtypes %}
