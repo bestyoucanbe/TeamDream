@@ -21,7 +21,6 @@ def get_actionitem(actionitem_id):
 			a.personal_benefit,
 			a.team_benefit,
 			a.presprint_review,
-			a.employee_id,
 			a.itemtype_id,
 			a.sprint_id
         FROM teamdreamapp_actionitem a
@@ -31,32 +30,43 @@ def get_actionitem(actionitem_id):
         return db_cursor.fetchone()
 
 
-def get_itemtypes():
+def get_itemtypes(request):
     with sqlite3.connect(Connection.db_path) as conn:
         conn.row_factory = model_factory(ItemType)
         db_cursor = conn.cursor()
 
+        user = request.user
+
         db_cursor.execute("""
-        select 	i.id,
-       			i.action_desc
-        from teamdreamapp_itemtype i
-        """)
+        select
+            i.action_desc,
+            i.employee_id
+            from teamdreamapp_itemtype i
+            join teamdreamapp_employee e ON e.id = i.employee_id
+            where e.user_id = ?
+        """, (user.id,))
 
         return db_cursor.fetchall()
 
 
-def get_sprints():
+def get_sprints(request):
     with sqlite3.connect(Connection.db_path) as conn:
         conn.row_factory = model_factory(Sprint)
         db_cursor = conn.cursor()
 
+        user = request.user
+
         db_cursor.execute("""
-        select 	s.id,
-     			s.sprint_name,
-     			s.start_date,
-     			s.end_date
+        select
+            s.sprint_name,
+            s.start_date,
+            s.end_date,
+            s.employee_id
         from teamdreamapp_sprint s
-        """)
+        join teamdreamapp_employee e ON e.id = s.employee_id
+        where e.user_id = ?
+        order by s.start_date
+        """, (user.id,))
 
         return db_cursor.fetchall()
 
@@ -66,8 +76,8 @@ def actionitem_edit_form(request, actionitem_id):
 
     if request.method == 'GET':
         actionitem = get_actionitem(actionitem_id)
-        all_itemtypes = get_itemtypes()
-        all_sprints = get_sprints()
+        all_itemtypes = get_itemtypes(request)
+        all_sprints = get_sprints(request)
 
         template = 'actionitems/editform.html'
         context = {

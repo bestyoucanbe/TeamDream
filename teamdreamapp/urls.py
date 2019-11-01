@@ -5,7 +5,7 @@ from .views import *
 app_name = "teamdreamapp"
 
 urlpatterns = [
-    url(r'^$', action_item_list, name='home'),
+    url(r'^$', go_home, name='home'),
     url(r'^actionitems$', action_item_list, name='actionitems'),
     # The following url takes you to the register_user method in views/auth/registration.py file.
     url(r'^register$', register_user, name='register'),

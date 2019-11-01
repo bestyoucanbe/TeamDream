@@ -22,11 +22,11 @@ def action_item_list(request):
                     a.personal_benefit,
                     a.team_benefit,
                     a.presprint_review,
-                    a.employee_id,
                     a.itemtype_id,
                     a.sprint_id
                 from teamdreamapp_actionitem a
-                join teamdreamapp_employee e ON e.id = a.employee_id
+                join teamdreamapp_itemtype i ON i.id = a.itemtype_id
+                join teamdreamapp_employee e ON e.id = i.employee_id
                 where e.user_id = ?
             """, (user.id,))
 
@@ -42,7 +42,6 @@ def action_item_list(request):
                 action.personal_benefit = row['personal_benefit']
                 action.team_benefit = row['team_benefit']
                 action.presprint_review = row['presprint_review']
-                action.employee_id = row['employee_id']
                 action.itemtype_id = row['itemtype_id']
                 action.sprint_id = row['sprint_id']
 

@@ -18,10 +18,11 @@ def add_itemtype(request):
         db_cursor.execute("""
         INSERT INTO teamdreamapp_itemtype
         (
-            action_desc
+            action_desc,
+            employee_id
         )
-        VALUES (?)
+        VALUES (?, ?)
         """,
-                          (form_data['actiondesc'],))
+                          (form_data['actiondesc'], request.user.employee.id))
 
         return redirect(reverse('teamdreamapp:itemtypelist'))

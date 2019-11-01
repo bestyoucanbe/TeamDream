@@ -20,7 +20,6 @@ def get_actionitemplus(actionitem_id):
 		    a.personal_benefit,
 		    a.team_benefit,
 		    a.presprint_review,
-		    a.employee_id,
 		    a.itemtype_id,
 		    a.sprint_id,
 		    i.id i2,
@@ -97,7 +96,6 @@ def action_item_details(request, actionitem_id):
                     personal_benefit = ?,
                     team_benefit = ?,
                     presprint_review = ?,
-                    employee_id = ?,
                     itemtype_id = ?,
                     sprint_id = ?
                 WHERE id = ?
@@ -106,7 +104,7 @@ def action_item_details(request, actionitem_id):
                                    form_data['finish_date'],
                                    form_data['personal_benefit'],
                                    form_data['team_benefit'], presprintvalue,
-                                   request.user.employee.id, form_data['actiondescription'],
+                                   form_data['actiondescription'],
                                    form_data['sprintdescription'], actionitem_id))
 
                 return redirect(reverse('teamdreamapp:actionitems'))

@@ -18,11 +18,11 @@ def add_sprint(request):
         db_cursor.execute("""
         INSERT INTO teamdreamapp_sprint
         (
-            sprint_name, start_date, end_date
+            sprint_name, start_date, end_date, employee_id
         )
-        VALUES (?, ?, ?)
+        VALUES (?, ?, ?, ?)
         """,
                           (form_data['sprintname'], form_data['startdate'],
-                           form_data['enddate']))
+                           form_data['enddate'], request.user.employee.id))
 
         return redirect(reverse('teamdreamapp:sprintlist'))
