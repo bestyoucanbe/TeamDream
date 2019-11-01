@@ -25,15 +25,15 @@ def action_item_addaction(request):
         INSERT INTO teamdreamapp_actionitem
         (
             description, start_date, finish_date,
-            personal_benefit, team_benefit, presprint_review, employee_id,itemtype_id, sprint_id
+            personal_benefit, team_benefit, presprint_review, itemtype_id, sprint_id
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """,
                           (form_data['description'], form_data['start_date'],
                            form_data['finish_date'],
                            form_data['personal_benefit'],
                            form_data['team_benefit'], presprintvalue,
-                           request.user.employee.id, form_data['actiondescription'],
+                           form_data['actiondescription'],
                            form_data['sprintdescription']))
 
         return redirect(reverse('teamdreamapp:actionitems'))

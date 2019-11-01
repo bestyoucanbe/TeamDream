@@ -42,7 +42,6 @@ def action_item_list(request):
                 action.personal_benefit = row['personal_benefit']
                 action.team_benefit = row['team_benefit']
                 action.presprint_review = row['presprint_review']
-                action.employee_id = row['employee_id']
                 action.itemtype_id = row['itemtype_id']
                 action.sprint_id = row['sprint_id']
 
