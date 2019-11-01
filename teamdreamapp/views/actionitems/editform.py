@@ -39,6 +39,7 @@ def get_itemtypes(request):
 
         db_cursor.execute("""
         select
+            i.id,
             i.action_desc,
             i.employee_id
             from teamdreamapp_itemtype i
@@ -58,6 +59,7 @@ def get_sprints(request):
 
         db_cursor.execute("""
         select
+            s.id,
             s.sprint_name,
             s.start_date,
             s.end_date,
