@@ -77,6 +77,8 @@ def action_item_details(request, actionitem_id, whichlist):
                 return redirect(reverse('teamdreamapp:actionitems'))
             elif whichlist == "completed":
                 return redirect(reverse('teamdreamapp:actionitemscompleted'))
+            elif whichlist == "presprintreview":
+                return redirect(reverse('teamdreamapp:actionitemspresprint'))
 
         elif (
             "actual_method" in form_data
@@ -115,3 +117,5 @@ def action_item_details(request, actionitem_id, whichlist):
                     return redirect(reverse('teamdreamapp:actionitems'))
                 elif whichlist == "completed":
                     return redirect(reverse('teamdreamapp:actionitemscompleted'))
+                elif whichlist == "presprintreview":
+                    return redirect(reverse('teamdreamapp:actionitemspresprint'))

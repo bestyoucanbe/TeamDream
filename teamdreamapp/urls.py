@@ -38,7 +38,10 @@ urlpatterns = [
     # The following url takes you to the action_edit_form method in views/actionitems/editform.py file.
     path('actionitems/(?P<actionitem_id>[0-9]+)/<str:whichlist>/form',
          actionitem_edit_form, name='actionitem_edit_form'),
-    # The following url takes you to the action_item_list_completed method in views/actionitems/listcompleted.py
+    # The following url takes you to the action_item_list_completed method in views/actionitems/listcompleted.py file.
     url(r'^actionitems/completed$', action_item_list_completed,
         name='actionitemscompleted'),
+    # The following url takes you to the action_item_list_presprint method in views/actionitems/listpresprint.py file.
+    url(r'^actionitems/presprintreview$', action_item_list_presprint,
+        name='actionitemspresprint'),
 ]
