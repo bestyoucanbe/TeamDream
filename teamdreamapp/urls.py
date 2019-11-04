@@ -32,9 +32,13 @@ urlpatterns = [
     # The following url takes you to the action_item_addaction method in views/actionitems/addaction.py file.
     url(r'^actionitems/addaction$', action_item_addaction,
         name='actionitemaddaction'),
-    # The following url takes you to the action_item_details method in views/actionitems/actionitemdet.py file
-    path('actionitem/<int:actionitem_id>',
+    # The following url takes you to the action_item_details method in views/actionitems/actionitemdet.py file.
+    path('actionitem/<int:actionitem_id>/<str:whichlist>',
          action_item_details, name='actionitem'),
-    url(r'^actionitems/(?P<actionitem_id>[0-9]+)/form$',
-        actionitem_edit_form, name='actionitem_edit_form'),
+    # The following url takes you to the action_edit_form method in views/actionitems/editform.py file.
+    path('actionitems/(?P<actionitem_id>[0-9]+)/<str:whichlist>/form',
+         actionitem_edit_form, name='actionitem_edit_form'),
+    # The following url takes you to the action_item_list_completed method in views/actionitems/listcompleted.py
+    url(r'^actionitems/completed$', action_item_list_completed,
+        name='actionitemscompleted'),
 ]

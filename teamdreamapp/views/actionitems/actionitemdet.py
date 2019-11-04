@@ -37,7 +37,7 @@ def get_actionitemplus(actionitem_id):
 
 
 @login_required
-def action_item_details(request, actionitem_id):
+def action_item_details(request, actionitem_id, whichlist):
     if request.method == 'GET':
         actionitemplus = get_actionitemplus(actionitem_id)
 
@@ -50,6 +50,7 @@ def action_item_details(request, actionitem_id):
         template = 'actionitems/detail.html'
         context = {
             'actionitemplus': actionitemplus,
+            'whichlist': whichlist,
             'presprint_value': presprint_value
         }
 
@@ -72,7 +73,10 @@ def action_item_details(request, actionitem_id):
                 WHERE id = ?
                 """, (actionitem_id,))
 
-            return redirect(reverse('teamdreamapp:actionitems'))
+            if whichlist == "all":
+                return redirect(reverse('teamdreamapp:actionitems'))
+            elif whichlist == "completed":
+                return redirect(reverse('teamdreamapp:actionitemscompleted'))
 
         elif (
             "actual_method" in form_data
@@ -107,4 +111,7 @@ def action_item_details(request, actionitem_id):
                                    form_data['actiondescription'],
                                    form_data['sprintdescription'], actionitem_id))
 
-                return redirect(reverse('teamdreamapp:actionitems'))
+                if whichlist == "all":
+                    return redirect(reverse('teamdreamapp:actionitems'))
+                elif whichlist == "completed":
+                    return redirect(reverse('teamdreamapp:actionitemscompleted'))

@@ -74,7 +74,7 @@ def get_sprints(request):
 
 
 @login_required
-def actionitem_edit_form(request, actionitem_id):
+def actionitem_edit_form(request, actionitem_id, whichlist):
 
     if request.method == 'GET':
         actionitem = get_actionitem(actionitem_id)
@@ -85,7 +85,8 @@ def actionitem_edit_form(request, actionitem_id):
         context = {
             'actionitem': actionitem,
             'all_itemtypes': all_itemtypes,
-            'all_sprints': all_sprints
+            'all_sprints': all_sprints,
+            'whichlist': whichlist
         }
 
         return render(request, template, context)
