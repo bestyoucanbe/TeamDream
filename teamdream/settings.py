@@ -121,4 +121,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Where the user goes after they are logged in--
-LOGIN_REDIRECT_URL = '/actionitems'
+LOGIN_REDIRECT_URL = '/'
