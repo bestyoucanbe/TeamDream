@@ -26,3 +26,4 @@ from .actionitems.addaction import action_item_addaction
 from .actionitems.actionitemdet import action_item_details
 from .actionitems.list import action_item_list
 from .actionitems.editform import actionitem_edit_form
+from .actionitems.listcompleted import action_item_list_completed

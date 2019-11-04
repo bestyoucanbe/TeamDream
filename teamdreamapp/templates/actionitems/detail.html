@@ -14,13 +14,13 @@
         <div>Team Benefit: {{ actionitemplus.team_benefit }}</div>
         <div>Pre-Sprint Review: {{ presprint_value }}</div>
         <br>
-        <form action="{% url 'teamdreamapp:actionitem' actionitemplus.a2 %}" method="POST">
+        <form action="{% url 'teamdreamapp:actionitem' actionitemplus.a2 whichlist %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="actual_method" value="DELETE">
             <button>Delete</button>
         </form>
         <br>
-        <form action="{% url 'teamdreamapp:actionitem_edit_form' actionitemplus.a2 %}" method="GET">
+        <form action="{% url 'teamdreamapp:actionitem_edit_form' actionitemplus.a2 whichlist %}" method="GET">
             {% csrf_token %}
             <button>Edit</button>
         </form>

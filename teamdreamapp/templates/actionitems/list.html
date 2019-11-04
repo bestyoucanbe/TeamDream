@@ -1,14 +1,21 @@
 {% extends 'shared/base.html' %}
 
 {% block content %}
-    <h1>Action Items</h1>
+
+    {% if whichlist == "all" %}
+        <h2>All Action Items</h2>
+    {% else %}
+        {% if whichlist == "completed" %}
+          <h2>Completed Action Items</h2>
+        {% endif %}
+    {% endif %}
 
     <a href="{% url 'teamdreamapp:actionitemaddform' %}">Add An Action Item</a>
 
     <ol>
     {% for actionitem in all_actions %}
         <li>
-            <a href="{% url 'teamdreamapp:actionitem' actionitem.id %}">{{ actionitem.description }}</a>
+            <a href="{% url 'teamdreamapp:actionitem' actionitem.id whichlist %}">{{ actionitem.description }}</a>
         </li>
     {% endfor %}
     </ol>

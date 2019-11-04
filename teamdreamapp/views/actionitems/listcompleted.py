@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 
 @login_required
-def action_item_list(request):
+def action_item_list_completed(request):
     if request.method == 'GET':
         with sqlite3.connect(Connection.db_path) as conn:
             conn.row_factory = sqlite3.Row
@@ -27,7 +27,7 @@ def action_item_list(request):
                 from teamdreamapp_actionitem a
                 join teamdreamapp_itemtype i ON i.id = a.itemtype_id
                 join teamdreamapp_employee e ON e.id = i.employee_id
-                where e.user_id = ?
+                where e.user_id = ? and a.finish_date !='' AND a.finish_date IS NOT NULL
             """, (user.id,))
 
             all_actions = []
@@ -47,8 +47,8 @@ def action_item_list(request):
 
                 all_actions.append(action)
 
-        #whichlist is a variable to differentiate the different categories of action items being generated.
-        whichlist = "all"
+        # whichlist is a variable to differentiate the different categories of action items being generated.
+        whichlist = "completed"
 
         template = 'actionitems/list.html'
         context = {

@@ -6,7 +6,7 @@
 {% comment %} The form action step below takes you to the url for this form--what happens when this form is submitted {% endcomment %}
 {% comment %} The method is sent with it--Post {% endcomment %}
 
-    <form action="{% url 'teamdreamapp:actionitem' actionitem.id %}" method="post">
+    <form action="{% url 'teamdreamapp:actionitem' actionitem.id whichlist %}" method="post">
       {% csrf_token %}
       <fieldset>
           <label for="actiondescription">Action Description: </label>
@@ -48,6 +48,7 @@
           <label for="presprintreview">Pre-Sprint Review: </label>
           <input id="presprintreview" type="checkbox" name="presprintreview" value=True>
       </fieldset>
+        {% comment %} To differentiate the ACTUAL method being requested, a hidden field is being used. {% endcomment %}
         <input type="hidden" name="actual_method" value="PUT">
         <input type="submit" value="Update" />
     </form>
