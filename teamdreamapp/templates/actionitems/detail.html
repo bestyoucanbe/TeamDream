@@ -53,7 +53,7 @@
         }
 
         .widthclass {
-            margin: 0 0 0 5em;
+            margin: 0 3em 2em 5em;
         }
 
         .cardclass {
@@ -62,7 +62,7 @@
     </style>
 </head>
 
-<body>
+<body style="background-color:aqua">
     <p class="mainTitle">TEAM DREAM</p>
     <br><br><br><br>
     <p class="subTitle">A Personal Development Plan for Success</p>
@@ -82,7 +82,7 @@
     <div class="widthclass">
             <h3>Action Item Detail</h3>
             <br>
-            <div class="card cardclass" style="width: 60rem;">
+            <div class="card cardclass" style="width: 60rem; background-color:lightyellow">
                 <div class="widthclass">
                     <h3>Type of Action: {{ actionitemplus.action_desc }}</h3>
                     <h3>Description: {{ actionitemplus.description }}</h3>
@@ -94,16 +94,17 @@
                     <div>Team Benefit: {{ actionitemplus.team_benefit }}</div>
                     <div>Pre-Sprint Review: {{ presprint_value }}</div>
                     <br>
-                    <form action="{% url 'teamdreamapp:actionitem' actionitemplus.a2 whichlist %}" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="actual_method" value="DELETE">
-                        <button>Delete</button>
-                    </form>
-                    <br>
-                    <form action="{% url 'teamdreamapp:actionitem_edit_form' actionitemplus.a2 whichlist %}" method="GET">
-                        {% csrf_token %}
-                        <button>Edit</button>
-                    </form>
+                    <div style="display: flex">
+                        <form action="{% url 'teamdreamapp:actionitem' actionitemplus.a2 whichlist %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="actual_method" value="DELETE">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                        <form class="ml-3" action="{% url 'teamdreamapp:actionitem_edit_form' actionitemplus.a2 whichlist %}" method="GET">
+                            {% csrf_token %}
+                            <button class="btn btn-primary">Edit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
     </div>
