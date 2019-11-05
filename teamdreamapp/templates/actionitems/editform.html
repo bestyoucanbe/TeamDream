@@ -46,7 +46,11 @@
       </fieldset>
       <fieldset>
           <label for="presprintreview">Pre-Sprint Review: </label>
-          <input id="presprintreview" type="checkbox" name="presprintreview" value=True>
+          {% if actionitem.presprint_review == 1 %}
+            <input id="presprintreview" type="checkbox" name="presprintreview" value=True checked>
+          {% else %}
+            <input id="presprintreview" type="checkbox" name="presprintreview" value=False>
+          {% endif %}
       </fieldset>
         {% comment %} To differentiate the ACTUAL method being requested, a hidden field is being used. {% endcomment %}
         <input type="hidden" name="actual_method" value="PUT">
