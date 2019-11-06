@@ -3,14 +3,14 @@
 {% block content %}
     <h2>List of Sprints</h2>
 
-    <a href="{% url 'teamdreamapp:sprintaddform' %}">Add A Sprint</a>
+    <a class="addlink" href="{% url 'teamdreamapp:sprintaddform' %}">Add A Sprint</a>
 
     <ol>
     {% for sprint in all_sprints %}
         <li>
             Sprint Name:  {{ sprint.sprint_name }}
-            Start Date: {{sprint.start_date}}
-            End Date: {{sprint.end_date}}
+            (Start Date: {{sprint.start_date}}
+            End Date: {{sprint.end_date}})
         </li>
     {% endfor %}
     </ol>

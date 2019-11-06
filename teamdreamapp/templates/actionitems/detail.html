@@ -1,84 +1,6 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
+{% extends 'shared/base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <title>Team Dream</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        .mainTitle {
-    position: absolute;
-    top: 10%;
-    right: 50%;
-    transform: translate(50%,-50%);
-    text-transform: uppercase;
-    font-family: verdana;
-    font-size: 4em;
-    font-weight: 700;
-    color: blue;
-    {% comment %} color: #f5f5f5; {% endcomment %}
-    text-shadow: 1px 1px 1px #919191,
-        1px 2px 1px #919191,
-        1px 3px 1px #919191,
-        1px 4px 1px #919191,
-        1px 5px 1px #919191,
-        1px 6px 1px #919191,
-        1px 7px 1px #919191,
-        1px 8px 1px #919191,
-        1px 9px 1px #919191,
-        1px 10px 1px #919191,
-    1px 18px 6px rgba(16,16,16,0.4),
-    1px 22px 10px rgba(16,16,16,0.2),
-    1px 25px 35px rgba(16,16,16,0.2),
-    1px 30px 60px rgba(16,16,16,0.4);
-    }
-
-        .subTitle {
-            margin-left: 10px;
-            font-style:  italic;
-            font-weight:  bold;
-            color: red;
-        }
-
-        .navList {
-            list-style-type: none;
-            display: flex;
-            border: 1px solid lightgray;ma
-            padding: 1em;
-        }
-
-        .navList__route {
-            margin: 0 0.5em;
-        }
-
-        .widthclass {
-            margin: 0 3em 2em 5em;
-        }
-
-        .cardclass {
-            border: 5px solid red;
-        }
-    </style>
-</head>
-
-<body style="background-color:aqua">
-    <p class="mainTitle">TEAM DREAM</p>
-    <br><br><br><br>
-    <p class="subTitle">A Personal Development Plan for Success</p>
-
-    <nav id="site-nav">
-        <ol class="navList">
-            <li class="navList__route"><a href="{% url 'teamdreamapp:home' %}">Home</a></li>
-            <li class="navList__route"><a href="{% url 'teamdreamapp:sprintlist' %}">Sprints</a></li>
-            <li class="navList__route"><a href="{% url 'teamdreamapp:itemtypelist' %}">Types of Actions</a></li>
-            <li class="navList__route"><a href="{% url 'teamdreamapp:actionitems' %}">All Action Items</a></li>
-            <li class="navList__route"><a href="{% url 'teamdreamapp:actionitemscompleted' %}">Completed Action Items</a></li>
-            <li class="navList__route"><a href="{% url 'teamdreamapp:actionitemspresprint' %}">Pre-Sprint Review Items</a></li>
-            <li class="navList__route"><a href="{% url 'teamdreamapp:logout' %}">Logout</a></li>
-        </ol>
-    </nav>
-
+{% block content %}
     <div class="widthclass">
             <h3>Action Item Detail</h3>
             <br>
@@ -108,6 +30,4 @@
                 </div>
             </div>
     </div>
-
-</body>
-</html>
+{% endblock %}
