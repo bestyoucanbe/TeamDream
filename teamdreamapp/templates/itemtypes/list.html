@@ -3,7 +3,7 @@
 {% block content %}
     <h2>List of Action Type Descriptions</h2>
 
-    <a href="{% url 'teamdreamapp:itemtypeaddform' %}">Add An Action Type Description</a>
+    <a class="addlink" href="{% url 'teamdreamapp:itemtypeaddform' %}">Add An Action Type Description</a>
 
     <ol>
     {% for itemtype in all_itemtypes %}
